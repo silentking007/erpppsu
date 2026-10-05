@@ -1,0 +1,680 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  width: 100%;
+  min-height: 100%;
+  font-family: Roboto, Arial, sans-serif;
+  color: #444;
+  background: #fff;
+}
+
+body {
+  overflow: hidden;
+}
+
+.login-page {
+  width: 100vw;
+  height: 100vh;
+  min-height: 650px;
+  display: flex;
+  background: #fff;
+}
+
+.campus-panel {
+  width: 65.2%;
+  height: 100vh;
+  overflow: hidden;
+  background: #eee;
+  position: relative;
+}
+
+.campus-slideshow {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.campus-slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0;
+  transition: opacity 1.25s ease-in-out;
+  will-change: opacity;
+}
+
+.campus-slide.active {
+  opacity: 1;
+}
+
+.form-panel {
+  width: 34.8%;
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background: #fff;
+  scrollbar-width: auto;
+}
+
+.form-inner {
+  width: min(435px, calc(100% - 40px));
+  margin: 26px auto 45px;
+}
+
+.university-logo {
+  display: block;
+  width: 210px;
+  height: 210px;
+  object-fit: contain;
+  margin: 0 auto 44px;
+}
+
+.field-label {
+  display: block;
+  font-size: 18px;
+  line-height: 1.35;
+  margin: 0 0 9px;
+  color: #444;
+}
+
+.required::before {
+  content: "*";
+  color: #f02e2e;
+  margin-right: 2px;
+}
+
+.role-row {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin: 0 0 14px;
+  font-size: 18px;
+}
+
+.role-row label {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.role-row input {
+  width: 16px;
+  height: 16px;
+  accent-color: #1685ff;
+  margin: 0;
+}
+
+.text-input {
+  display: block;
+  width: 100%;
+  height: 41px;
+  border: 1px solid #b9c9de;
+  background: #eaf2ff;
+  border-radius: 0;
+  padding: 8px 13px;
+  margin: 0 0 17px;
+  font-size: 17px;
+  color: #333;
+  outline: none;
+}
+
+.text-input:focus {
+  border-color: #79a9df;
+  box-shadow: 0 0 0 1px #79a9df;
+}
+
+.password-label {
+  margin-bottom: 9px;
+}
+
+.info-dot {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 17px;
+  height: 17px;
+  margin-left: 3px;
+  border-radius: 50%;
+  background: #d8e8d2;
+  color: #4e9340;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.show-password {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  font-size: 18px;
+  margin: 4px 0 31px;
+}
+
+.show-password input {
+  width: 22px;
+  height: 22px;
+  margin: 0;
+  accent-color: #44b5ae;
+}
+
+.button-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 26px;
+}
+
+.btn {
+  border: 0;
+  color: #fff;
+  font-size: 18px;
+  padding: 10px 16px;
+  height: 40px;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.login-btn {
+  background: #43b5ad;
+}
+
+.forgot-btn {
+  background: #ef4e58;
+}
+
+.btn:hover {
+  filter: brightness(.95);
+}
+
+.passout-link {
+  display: inline-block;
+  color: #267bb7;
+  font-size: 18px;
+  text-decoration: underline;
+  margin-bottom: 14px;
+}
+
+.google-btn {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 14px;
+  width: 237px;
+  height: 47px;
+  padding: 0 14px;
+  background: #fff;
+  border: 1px solid #ddd;
+  color: #5c5c5c;
+  font-size: 18px;
+  box-shadow: 0 1px 2px rgba(0,0,0,.05);
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.google-g {
+  font-size: 27px;
+  font-weight: 700;
+  line-height: 1;
+  color: #4285f4;
+}
+
+.chrome-note {
+  text-align: center;
+  font-size: 16px;
+  margin: 12px 0 14px;
+  color: #444;
+}
+
+.maintenance {
+  width: 100%;
+  min-height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px 18px;
+  background: #fde0e2;
+  color: #f14c54;
+  text-align: center;
+  font-size: 18px;
+  line-height: 1.4;
+  margin-bottom: 34px;
+}
+
+.maintenance .warning {
+  font-size: 17px;
+}
+
+.download-title {
+  text-align: center;
+  color: #333;
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.store-buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding-bottom: 28px;
+}
+
+.store-buttons a {
+  display: block;
+  width: 200px;
+}
+
+.store-buttons img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.help-float {
+  position: fixed;
+  right: 16px;
+  bottom: 13px;
+  width: 47px;
+  height: 47px;
+  border-radius: 50%;
+  background: #fff;
+  border: 1px solid #eee;
+  box-shadow: 0 2px 9px rgba(0,0,0,.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #279cff;
+  font-size: 30px;
+  z-index: 5;
+}
+
+@media (max-width: 1000px) {
+  html, body {
+    width: 100%;
+    min-height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  body {
+    background: #fff;
+  }
+
+  .login-page {
+    width: 100%;
+    min-height: 100vh;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Mobile reference: the campus image is the full viewport width
+     and uses a tall cropped presentation. */
+  .campus-panel {
+    width: 100%;
+    height: 83.5vw;
+    min-height: 0;
+    max-height: none;
+    flex: 0 0 auto;
+  }
+
+  .campus-slide {
+    object-fit: cover;
+    object-position: center center;
+  }
+
+  .form-panel {
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    overflow: visible;
+    background: #fff;
+  }
+
+  .form-inner {
+    width: calc(100% - 58px);
+    max-width: none;
+    margin: 37px 29px 50px;
+  }
+
+  .university-logo {
+    width: 350px;
+    height: 350px;
+    max-width: 100%;
+    margin: 0 auto 55px;
+    object-fit: contain;
+  }
+
+  .field-label {
+    font-size: 27px;
+    line-height: 1.3;
+    margin-bottom: 13px;
+  }
+
+  .role-row {
+    gap: 31px;
+    margin-bottom: 25px;
+    font-size: 26px;
+  }
+
+  .role-row label {
+    gap: 7px;
+  }
+
+  .role-row input {
+    width: 31px;
+    height: 31px;
+  }
+
+  .text-input {
+    width: 100%;
+    height: 66px;
+    padding: 10px 22px;
+    margin-bottom: 28px;
+    font-size: 25px;
+    border: 1px solid #aeb8bf;
+    background: #fff;
+  }
+
+  .password-label {
+    margin-bottom: 13px;
+  }
+
+  .info-dot {
+    width: 27px;
+    height: 27px;
+    font-size: 17px;
+    margin-left: 5px;
+  }
+
+  .show-password {
+    gap: 23px;
+    font-size: 27px;
+    margin: -2px 0 47px;
+  }
+
+  .show-password input {
+    width: 35px;
+    height: 35px;
+  }
+
+  .button-row {
+    gap: 7px;
+    margin-bottom: 44px;
+  }
+
+  .btn {
+    height: 65px;
+    padding: 10px 20px;
+    font-size: 25px;
+  }
+
+  .passout-link {
+    font-size: 26px;
+    margin-bottom: 26px;
+  }
+
+  .google-btn {
+    width: 354px;
+    max-width: 100%;
+    height: 73px;
+    padding: 0 22px;
+    gap: 20px;
+    font-size: 25px;
+  }
+
+  .google-g {
+    font-size: 36px;
+  }
+
+  .chrome-note {
+    font-size: 22px;
+    margin: 24px 0 25px;
+    white-space: nowrap;
+    text-align: center;
+  }
+
+  .maintenance {
+    width: 100%;
+    min-height: 138px;
+    padding: 18px 20px;
+    margin-bottom: 57px;
+    font-size: 22px;
+    line-height: 1.45;
+  }
+
+  .maintenance .warning {
+    font-size: 21px;
+  }
+
+  .download-title {
+    font-size: 25px;
+    margin-bottom: 29px;
+  }
+
+  .store-buttons {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 23px;
+    padding-bottom: 32px;
+  }
+
+  .store-buttons a {
+    width: calc((100% - 23px) / 2);
+    max-width: 305px;
+  }
+
+  .store-buttons img {
+    width: 100%;
+    height: auto;
+  }
+
+  .help-float {
+    position: fixed;
+    right: 16px;
+    bottom: 14px;
+    width: 48px;
+    height: 48px;
+  }
+}
+
+
+@media (min-width: 700px) and (max-width: 1000px) {
+  .campus-panel {
+    height: 83.5vw;
+  }
+
+  .form-inner {
+    width: calc(100% - 58px);
+    margin: 37px 29px 50px;
+  }
+
+  .university-logo {
+    width: 350px;
+    height: 350px;
+    margin-bottom: 55px;
+  }
+
+  .field-label {
+    font-size: 27px;
+  }
+
+  .role-row {
+    font-size: 26px;
+    gap: 31px;
+  }
+
+  .text-input {
+    height: 66px;
+    font-size: 25px;
+  }
+
+  .show-password {
+    font-size: 27px;
+  }
+
+  .btn {
+    height: 65px;
+    font-size: 25px;
+  }
+
+  .passout-link {
+    font-size: 26px;
+  }
+
+  .google-btn {
+    width: 354px;
+    height: 73px;
+    font-size: 25px;
+  }
+
+  .chrome-note {
+    font-size: 22px;
+  }
+
+  .maintenance {
+    min-height: 138px;
+    font-size: 22px;
+  }
+
+  .download-title {
+    font-size: 25px;
+  }
+
+  .store-buttons {
+    gap: 23px;
+  }
+
+  .store-buttons a {
+    width: calc((100% - 23px) / 2);
+  }
+}
+
+@media (max-width: 600px) {
+  .campus-panel {
+    height: 83.5vw;
+    max-height: none;
+  }
+
+  .form-inner {
+    width: calc(100% - 58px);
+    margin-left: 29px;
+    margin-right: 29px;
+  }
+
+  .university-logo {
+    width: min(350px, 100%);
+    height: min(350px, 100vw);
+  }
+
+  .field-label {
+    font-size: clamp(21px, 3.7vw, 27px);
+  }
+
+  .role-row {
+    font-size: clamp(20px, 3.55vw, 26px);
+  }
+
+  .text-input {
+    font-size: clamp(19px, 3.4vw, 25px);
+  }
+
+  .show-password {
+    font-size: clamp(21px, 3.65vw, 27px);
+  }
+
+  .btn {
+    font-size: clamp(19px, 3.4vw, 25px);
+  }
+
+  .passout-link {
+    font-size: clamp(20px, 3.55vw, 26px);
+  }
+
+  .google-btn {
+    font-size: clamp(19px, 3.4vw, 25px);
+  }
+
+  .chrome-note {
+    font-size: clamp(16px, 3vw, 22px);
+  }
+
+  .maintenance {
+    font-size: clamp(16px, 3vw, 22px);
+  }
+
+  .download-title {
+    font-size: clamp(20px, 3.4vw, 25px);
+  }
+}
+
+@media (max-width: 420px) {
+  .form-inner {
+    width: calc(100% - 40px);
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  .university-logo {
+    margin-bottom: 40px;
+  }
+
+  .role-row {
+    gap: 20px;
+  }
+
+  .role-row input {
+    width: 27px;
+    height: 27px;
+  }
+
+  .text-input {
+    height: 58px;
+  }
+
+  .show-password {
+    gap: 15px;
+    margin-bottom: 38px;
+  }
+
+  .button-row {
+    margin-bottom: 35px;
+  }
+
+  .btn {
+    height: 58px;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .google-btn {
+    width: 100%;
+    height: 62px;
+  }
+
+  .chrome-note {
+    white-space: normal;
+  }
+
+  .maintenance {
+    min-height: 120px;
+  }
+
+  .store-buttons {
+    gap: 10px;
+  }
+
+  .store-buttons a {
+    width: calc((100% - 10px) / 2);
+  }
+}

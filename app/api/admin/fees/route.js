@@ -1,0 +1,6 @@
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+import {NextResponse} from 'next/server';import {db,ensureSchema} from '../../../../lib/db';import {getSession} from '../../../../lib/auth';
+async function ok(){const s=await getSession();return s&&s.role==='admin'}
+export async function GET(req){if(!(await ok()))return NextResponse.json({error:'Unauthorized'},{status:401});await ensureSchema();const id=Number(new URL(req.url).searchParams.get('user_id'));const r=await db.execute({sql:'SELECT * FROM fees WHERE user_id=? ORDER BY CAST(semester AS INTEGER)',args:[id]});return NextResponse.json({fees:r.rows});}
+export async function PUT(req){if(!(await ok()))return NextResponse.json({error:'Unauthorized'},{status:401});await ensureSchema();const {user_id,fees=[]}=await req.json();await db.execute({sql:'DELETE FROM fees WHERE user_id=?',args:[Number(user_id)]});for(const f of fees.slice(0,7)){await db.execute({sql:'INSERT INTO fees (user_id,semester,fees_collected,previously_paid,paid_amount,outstanding_amount,can_pay) VALUES (?,?,?,?,?,?,?)',args:[Number(user_id),String(f.semester||''),Number(f.fees_collected||0),Number(f.previously_paid||0),Number(f.paid_amount||0),Number(f.outstanding_amount||0),Number(f.can_pay||0)]})}return NextResponse.json({message:'Fees saved.'});}
